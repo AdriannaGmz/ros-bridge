@@ -7,6 +7,8 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   tf
   dynamic_reconfigure
+  message_generation    # for python msgs and services. dagr
+  genmsg                #  for cpp msgs and srv. dagr
 )
 
 catkin_python_setup()
@@ -20,6 +22,14 @@ add_message_files(
   EgoVehicleControlState.msg
   EgoVehicleControlTarget.msg
 )
+
+add_service_files(
+  FILES
+  IsAlive.srv
+)
+
+add_service_files(DIRECTORY srv)
+
 
 generate_messages(
   DEPENDENCIES

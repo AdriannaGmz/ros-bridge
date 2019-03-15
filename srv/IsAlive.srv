@@ -1,0 +1,3 @@
+bool bridge_query
+---
+bool bridge_status

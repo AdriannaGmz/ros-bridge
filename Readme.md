@@ -23,6 +23,7 @@ does not work out of the box with the ROS bridge.
 - [x] Lidar sensor support
 - [ ] Rosbag in the bridge (in order to avoid rosbag record -a small time errors)
 - [ ] Add traffic light support
+- [x] Added query service for bridge status. dagr
 
 # Setup
 

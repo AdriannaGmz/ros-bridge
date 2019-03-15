@@ -17,6 +17,21 @@ import carla
 from carla_ros_bridge.bridge import CarlaRosBridge
 from carla_ros_bridge.bridge_with_rosbag import CarlaRosBridgeWithBag
 
+from carla_ros_bridge.srv import *      # carla_ros services
+
+
+
+# Service provided to acknowledge an enabled bridge, returns True when 
+# bridge (this node) is alive. dagr
+def service_call(req):  
+    query = [req.bridge_query]
+    status = True
+    return status  #delivered as bridge_status
+
+
+
+
+
 
 def main():
     """
@@ -44,6 +59,17 @@ def main():
             'rosbag_fname', '') else CarlaRosBridge
         carla_ros_bridge = bridge_cls(
             carla_world=carla_client.get_world(), params=params)
+
+
+        # Service initialization. dagr --
+            # Server structure
+            # service name: get_bridge_status
+            # service type: IsAlive
+            # requests are passed to function: service_call
+        rospy.Service('get_bridge_status', IsAlive, service_call)
+        # --
+
+
         carla_ros_bridge.run()
         carla_ros_bridge = None
 
